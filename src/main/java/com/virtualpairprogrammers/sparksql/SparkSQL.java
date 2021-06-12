@@ -1,10 +1,10 @@
 package com.virtualpairprogrammers.sparksql;
 
-import org.apache.spark.api.java.function.FilterFunction;
 import org.apache.spark.sql.Column;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
+import static org.apache.spark.sql.functions.col;
 
 public class SparkSQL {
 
@@ -47,12 +47,15 @@ public class SparkSQL {
 
 
         // Filtering #3 using Column
-        Column subjectColumn = dataset.col("subject");
-        Column yearColumn = dataset.col("year");
-
-        Dataset<Row> modernArts = dataset.filter(subjectColumn.equalTo("Modern Art").and(yearColumn.geq("2007")));
+        Dataset<Row> modernArts = dataset.filter(col("subject").equalTo("Modern Art").and(col("year").geq("2007")));
         modernArts.show();
 
+
+        // we can also create views on the dataset and after that use for querying data with sql type queries
+        dataset.createOrReplaceTempView("student");
+        Dataset<Row> results = sparkSession.sql("select avg(score) AS average_score from student where subject='Modern Art' AND year >=2007");
+
+        results.show();
         sparkSession.close();
     }
 }
