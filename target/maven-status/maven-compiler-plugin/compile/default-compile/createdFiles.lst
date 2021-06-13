@@ -1,0 +1,7 @@
+com/virtualpairprogrammers/Util.class
+com/virtualpairprogrammers/streaming/LoggingServer.class
+com/virtualpairprogrammers/Main.class
+com/virtualpairprogrammers/sparksql/SparkSQL.class
+com/virtualpairprogrammers/sparksql/SparkSQLAggregations.class
+com/virtualpairprogrammers/ViewingFigures.class
+com/virtualpairprogrammers/ViewingFigures$1.class
